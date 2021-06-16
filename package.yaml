@@ -8,6 +8,7 @@ dependencies:
 - base >= 4.7 && < 5
 - rio
 - aeson
+- mtl
 - template-haskell
 - persistent
 - persistent-template
