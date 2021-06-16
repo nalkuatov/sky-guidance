@@ -1,0 +1,45 @@
+name:                sky-guidance
+github:              "nalkuatov/sky-guidance"
+
+extra-source-files:
+- README.md
+
+dependencies:
+- base >= 4.7 && < 5
+- rio
+- aeson
+- template-haskell
+- persistent
+- persistent-template
+- persistent-redis
+- servant
+- servant-server
+
+default-extensions:
+- NoImplicitPrelude
+- OverloadedStrings
+
+library:
+  source-dirs: src
+
+executables:
+  sky-guidance-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sky-guidance
+
+tests:
+  sky-guidance-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sky-guidance

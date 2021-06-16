@@ -1,0 +1,8 @@
+resolver: lts-16.31
+
+packages:
+- .
+
+extra-deps:
+- persistent-redis-2.5.2.5@sha256:57a0f2dee4b108494aa86f98081fcb13a6eba7d897813480780db79979375bde,3198
+
