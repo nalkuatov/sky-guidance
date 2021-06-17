@@ -1,7 +1,9 @@
 module Main where
 
-import System.IO (print)
-import RIO
+import           RIO
+
+-- local imports
+import           Server (start)
 
 main :: IO ()
-main = print "Launching missiles..."
+main = start

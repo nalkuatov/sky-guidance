@@ -9,6 +9,7 @@ dependencies:
 - rio
 - aeson
 - mtl
+- yaml
 - template-haskell
 - persistent
 - persistent-template

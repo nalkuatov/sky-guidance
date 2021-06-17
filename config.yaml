@@ -1,0 +1,9 @@
+port: 8080
+
+locations:
+  - Almaty
+  - Moscow
+  - Minsk
+
+redishost: localhost
+redisport: 6379
