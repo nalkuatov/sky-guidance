@@ -1,8 +1,8 @@
 {-# LANGUAGE DataKinds                  #-}
 {-# LANGUAGE DerivingStrategies         #-}
 {-# LANGUAGE ExistentialQuantification  #-}
-{-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
 {-# LANGUAGE QuasiQuotes                #-}
@@ -14,15 +14,15 @@
 
 module Persist where
 
-import RIO
+import           RIO
 
-import Language.Haskell.TH.Syntax
-import Database.Persist
-import Database.Persist.Redis
-import Database.Persist.TH
+import           Database.Persist
+import           Database.Persist.Redis
+import           Database.Persist.TH
+import           Language.Haskell.TH.Syntax
 
 -- local imports
-import Foundation
+import           Foundation
 
 let redisSettings = mkPersistSettings (ConT ''RedisBackend)
  in share [mkPersist redisSettings] [persistLowerCase|

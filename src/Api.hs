@@ -1,16 +1,16 @@
+{-# LANGUAGE DataKinds     #-}
 {-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE DataKinds #-}
 
 module Api where
 
-import RIO
+import           RIO
 
-import Servant
+import           Servant
 
 -- local imports
-import Foundation
-import Persist
-import Query
+import           Foundation
+import           Persist
+import           Query
 
 type Api =
   "api" :>

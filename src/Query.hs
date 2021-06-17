@@ -3,13 +3,13 @@ module Query
   )
   where
 
-import RIO
+import           RIO
 
-import Database.Persist
-import Database.Persist.Redis
+import           Database.Persist
+import           Database.Persist.Redis
 
 -- local imports
-import Persist
+import           Persist
 
 
 insertLocation :: MonadIO m => Location -> RedisT m (Key Location)

@@ -1,14 +1,14 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE RankNTypes                 #-}
+{-# LANGUAGE TypeOperators              #-}
 
 module Foundation where
 
-import RIO hiding (Handler)
+import           RIO                    hiding (Handler)
 
-import Servant
-import Control.Monad.Except
-import Database.Persist.Redis (RedisT, RedisConf)
+import           Control.Monad.Except
+import           Database.Persist.Redis (RedisConf, RedisT)
+import           Servant
 
 type App = AppT IO
 
