@@ -13,12 +13,17 @@ dependencies:
 - persistent
 - persistent-template
 - persistent-redis
-- servant
+- http-client
+- servant-client-core
+- servant-client
 - servant-server
 
 default-extensions:
 - NoImplicitPrelude
 - OverloadedStrings
+- DataKinds
+- TypeOperators
+- FlexibleContexts
 
 library:
   source-dirs: src

@@ -1,6 +1,5 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE RankNTypes                 #-}
-{-# LANGUAGE TypeOperators              #-}
 
 module Foundation where
 
@@ -9,6 +8,7 @@ import           RIO                    hiding (Handler)
 import           Control.Monad.Except
 import           Database.Persist.Redis (RedisConf, RedisT)
 import           Servant
+import           Servant.Client         (ClientEnv)
 
 type App = AppT IO
 
@@ -30,5 +30,6 @@ appToHandler config =
 
 data Config =
   Config { _redisConf :: RedisConf
+         , _clientEnv :: ClientEnv
          }
 

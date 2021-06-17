@@ -12,6 +12,7 @@ import           Database.Persist.Redis
 import           Persist
 
 
-insertLocation :: MonadIO m => Location -> RedisT m (Key Location)
+insertLocation :: MonadIO m
+  => Location -> RedisT m (Key Location)
 insertLocation = insert
 
