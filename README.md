@@ -13,3 +13,12 @@ Some notes about libraries, techniques used throughout the project
   * [Redis](https://redis.io/commands) is used as a backend for a caching capability of an app
   * `persistent`, `persistent-redis` libraries are used for records' serialization and querying
 
+How to run
+---
+
+  * `docker-compose up -d redis`
+  * `stack build`
+  * `API_KEY=<your api key from openweathermap.org> stack exec sky-guidance-exe`
+  * Change the configuration defaults, if neccessary, by editing `config.yaml`
+  and passing in the `environment variables`
+

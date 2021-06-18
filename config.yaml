@@ -1,11 +1,11 @@
-appport: 9090
+appport: 9090 # port number to run an app at
 
-locations:
+locations: # a list of locations to perform periodic caching for
   - Almaty
   - Moscow
   - Minsk
 
 cooldown: 60000000 # time in microseconds
 
-redishost: localhost
-redisport: 6379
+redishost: localhost # redis host
+redisport: 6379 # redis port
