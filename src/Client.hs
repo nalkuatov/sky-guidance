@@ -26,6 +26,8 @@ type WeatherApi =
   RequiredQueryParam "appid" Text :>
   Get '[JSON] Value
 
+-- | Grabs the weather data from a third party
+-- api and stores it in a cache
 cache :: (MonadReader Config m, MonadThrow m, MonadIO m)
   => City -> m Value
 cache city = do
@@ -49,6 +51,7 @@ repetitiveCache = forever $ do
     <> " is written to the cache"
   threadDelay $ fromMaybe 300000 period
 
+-- | Pulls the weather data from a third party api
 pull :: (MonadReader Config m, MonadThrow m, MonadIO m)
   => City -> Appid -> m Value
 pull = hoistClient proxy run (client proxy)
