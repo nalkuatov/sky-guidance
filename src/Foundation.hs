@@ -8,10 +8,12 @@ import           RIO                    hiding (Handler)
 
 import           Control.Monad.Except
 import           Data.Yaml
-import           Database.Persist.Redis (RedisConf, RedisT)
-import           GHC.Generics
-import           Servant
+import           Database.Persist.Redis (RedisConf)
+import           Servant                (Handler (..))
 import           Servant.Client         (ClientEnv)
+
+-- local imports
+import           Types                  (City)
 
 type App = AppT IO
 
@@ -21,6 +23,7 @@ newtype AppT m a =
                   , Applicative
                   , Monad
                   , MonadIO
+                  , MonadThrow
                   , MonadReader Config
                   )
 
@@ -35,14 +38,15 @@ data Config =
   Config { _redisConf :: RedisConf
          , _clientEnv :: ClientEnv
          , _appConf   :: AppConf
+         , _appid     :: Text -- ^ an api_key
          }
 
 data AppConf =
-  AppConf { locations  :: [Text]
-          , port       :: Integer
+  AppConf { locations  :: [City]
+          , appport    :: Int
           , redishost  :: Text
           , redisport  :: Integer
-          , cooldown   :: Maybe Integer
+          , cooldown   :: Maybe Int
           , errorrange :: Maybe Integer
           } deriving (Eq, Show, Generic)
 

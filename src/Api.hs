@@ -1,23 +1,39 @@
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric  #-}
+{-# LANGUAGE LambdaCase     #-}
+
 module Api where
 
 import           RIO
 
+import           Data.Aeson (Value, decodeStrict)
 import           Servant
 
 -- local imports
-import           Foundation
-import           Persist
-import           Query
+import           Client     (cache)
+import           Foundation (AppT, Config, appToHandler)
+import           Persist    (Location (..), runQuery)
+import           Query      (selectLocation)
+import           Types      (City)
 
 type Api =
   "api" :>
   "forecast" :>
-  Capture "lat" Double :>
-  Capture "lon" Double :>
-  Get '[JSON] Text
+  QueryParam' '[Required] "city" City :>
+  Get '[JSON] (Maybe Value)
 
-handler :: MonadIO m => ServerT Api (AppT m)
-handler lat lon = do
-  _ <- runQuery $ insertLocation $ Location lat lon
-  pure "ok"
+handler :: (MonadThrow m, MonadIO m) => ServerT Api (AppT m)
+handler city = do
+  location <- runQuery $ selectLocation city
+  case location of
+    Nothing -> Just <$> cache city
+    Just v  -> pure $ decodeStrict $ locationWeather v
+
+init :: Config -> Application
+init config =
+  serve api $
+  hoistServer api (appToHandler config) handler
+
+api :: Proxy Api
+api = Proxy
 

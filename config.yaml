@@ -1,9 +1,11 @@
-port: 8080
+appport: 9090
 
 locations:
   - Almaty
   - Moscow
   - Minsk
+
+cooldown: 60000000 # time in microseconds
 
 redishost: localhost
 redisport: 6379

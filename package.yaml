@@ -9,13 +9,14 @@ dependencies:
 - rio
 - aeson
 - mtl
+- wai
+- warp
 - yaml
 - template-haskell
 - persistent
 - persistent-template
 - persistent-redis
 - http-client
-- servant-client-core
 - servant-client
 - servant-server
 

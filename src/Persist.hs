@@ -14,22 +14,19 @@ module Persist where
 
 import           RIO
 
-import           Database.Persist
 import           Database.Persist.Redis
 import           Database.Persist.TH
 import           Language.Haskell.TH.Syntax
 
 -- local imports
-import           Foundation
+import           Foundation                 (Config (..))
+import           Types                      (City)
 
 let redisSettings = mkPersistSettings (ConT ''RedisBackend)
  in share [mkPersist redisSettings] [persistLowerCase|
     Location
-      lat Double
-      lon Double
-      deriving Show
-    Weather
-      description Text
+      city City
+      weather ByteString
       deriving Show
 |]
 
